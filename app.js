@@ -21,6 +21,7 @@ const totalPersonas = document.querySelector("#totalPersonas");
 const estado = document.querySelector("#estado");
 const mensaje = document.querySelector("#mensaje");
 const btnVaciar = document.querySelector("#btnVaciar");
+let temporizadorMensaje;
 
 
 /* CARGAR EXPERIENCIAS */
@@ -686,17 +687,21 @@ function vaciarReservacion() {
 
 function mostrarMensaje(texto, tipo) {
 
+    clearTimeout(temporizadorMensaje);
+
     mensaje.textContent = texto;
 
     mensaje.className =
         `mensaje ${tipo}`;
 
 
-    setTimeout(() => {
+    temporizadorMensaje = setTimeout(() => {
 
         mensaje.textContent = "";
 
         mensaje.className = "mensaje";
+
+        temporizadorMensaje = undefined;
 
     }, 4000);
 }
